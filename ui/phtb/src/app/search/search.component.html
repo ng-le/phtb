@@ -1,0 +1,66 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>Search</b></h4>
+          </div>
+        </div>
+      </div>
+      <form #searchForm="ngForm">
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="Keywords" class="p-t-b-10">Keywords<span class="requiredStar">*</span></label>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Keywords" required maxlength="512"
+                [(ngModel)]="searchFormModel.keywords" name="Keywords" #Keywords="ngModel">
+              <div *ngIf="Keywords.errors && isSubmitted" class="alert alert-danger validationError">
+                <div [hidden]="!Keywords.errors?.['required']">
+                  Keywords is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="TargetUrl" class="p-t-b-10">Target Url<span class="requiredStar">*</span></label>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="TargetUrl" required maxlength="512"
+                [(ngModel)]="searchFormModel.targetUrl" name="TargetUrl" #TargetUrl="ngModel">
+              <div *ngIf="TargetUrl.errors && isSubmitted" class="alert alert-danger validationError">
+                <div [hidden]="!TargetUrl.errors?.['required']">
+                  Target Url is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="Search Engine Type" class="p-t-b-10">Search Engine<span class="requiredStar">*</span></label>
+            </div>
+            <div class="col-sm-9">
+              <select id="SearchEngineType" name="SearchEngineType" [(ngModel)]="searchFormModel.searchEngineType">
+                <option *ngFor="let key of enumKeys" [value]="key">{{searchEngineType[key]}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="Result" class="p-t-b-10">Result</label>
+            </div>
+            <div class="col-sm-9">
+              <label for="Result" class="p-t-b-10">{{searchResult.result}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="table-footer">
+          <button class="btn btn-success" (click)="search(searchForm.form.valid)">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
