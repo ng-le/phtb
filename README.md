@@ -7,7 +7,7 @@ The following prerequisites are required to build and run the solution:
 Clone the repo from master branch to your machine.
 
 ## Database
-You can use SSMS to connect to (localdb)\\mssqllocaldb to make sure it was installed correctly
+You can use SSMS to connect to `(localdb)\\mssqllocaldb` to make sure it was installed correctly
 
 ## API
 Launch the api:
