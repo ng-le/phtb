@@ -1,8 +1,12 @@
-﻿using Infrastructure.Services.Scraping;
+﻿using Application.Common.Exceptions;
+using Application.Scraping.Interfaces;
+using Domain.Enums;
+using Infrastructure.Services.Scraping;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using System.Net;
+using System.Net.Http;
 
 namespace Application.UnitTests.Scraping
 {
@@ -51,7 +55,7 @@ namespace Application.UnitTests.Scraping
         }
 
         [Fact]
-        public async Task GetPageContent_WhenThrowHttpRequestException_ThenLogsErrorAndReturnsEmptyString()
+        public async Task GetPageContent_WhenThrowHttpRequestException_ThenLogsErrorAndThrowWebScraperException()
         {
             // Arrange
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -69,10 +73,9 @@ namespace Application.UnitTests.Scraping
             _mockHttpClientFactory.Setup(x => x.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
             // Act
-            var result = await _webScraper.GetPageContent("https://example.com");
+            await Assert.ThrowsAsync<WebScraperException>(async () => await _webScraper.GetPageContent("https://example.com"));
 
             // Assert
-            Assert.Equal(string.Empty, result);
             _mockLogger.Verify(
                 x => x.Log(
                     LogLevel.Error,
