@@ -20,11 +20,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let result of searchResults" class="center-align">
-            <td>{{ result.searchEngineType }}</td>
+            <td>{{ searchEngineType[result.searchEngineType] }}</td>
             <td>{{ result.keywords }}</td>
             <td>{{ result.targetUrl }}</td>
             <td>{{ result.result }}</td>
-            <td>{{ result.createdOn }}</td>
+            <td>{{ result.createdOn | date : "short" }}</td>
           </tr>
           <tr>
             <td *ngIf="searchResults.length == 0" colspan="6">No Search Histories Found</td>

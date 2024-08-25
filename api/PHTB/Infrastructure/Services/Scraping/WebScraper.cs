@@ -1,4 +1,5 @@
-﻿using Application.Scraping.Interfaces;
+﻿using Application.Common.Exceptions;
+using Application.Scraping.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Services.Scraping
@@ -25,9 +26,10 @@ namespace Infrastructure.Services.Scraping
             catch (HttpRequestException ex)
             {
                 _logger.LogError(ex, $"Get page content from url exception: {ex.Message}");
+                throw new WebScraperException("Failed to get page content from the URL: " + ex.Message);
             }
 
-            return string.Empty;
+            //return string.Empty;
         }
     }
 }

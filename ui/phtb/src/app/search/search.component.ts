@@ -3,6 +3,7 @@ import { SearchResultService } from "../services/search-result.service";
 import { NgForm } from "@angular/forms";
 import { SearchEngineType, SearchResult } from "../models/search-result.model";
 import { ApiService } from "../services/api.service";
+import { ToastrService } from "ngx-toastr";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class SearchComponent implements OnInit {
 
   @Output() searchCompletedEvent = new EventEmitter<void>();
 
-  constructor(private searchResultService: SearchResultService) {
+  constructor(private searchResultService: SearchResultService, private toastr: ToastrService) {
     this.enumKeys = Object.keys(this.searchEngineType)
       .filter((key) => !isNaN(Number(key)))
       .map((key) => Number(key));
@@ -48,11 +49,17 @@ export class SearchComponent implements OnInit {
           this.searchFormModel.keywords,
           this.searchFormModel.targetUrl,
           this.searchFormModel.searchEngineType)
-        .subscribe(data => {
-          this.searchResult = data;
-          this.isSubmitted = false;
-          this.searchCompletedEvent.emit();
-        });
+        .subscribe(
+          data => {
+            this.searchResult = data;
+            this.isSubmitted = false;
+            this.searchCompletedEvent.emit();
+            this.toastr.success('Search Completed!');
+          },
+          error => {
+            this.toastr.error(error.detail);
+          }
+        );
     }
   }
 }

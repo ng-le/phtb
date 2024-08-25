@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
-import { SearchResult } from "../models/search-result.model";
+import { SearchEngineType, SearchResult } from "../models/search-result.model";
 import { SearchResultService } from "../services/search-result.service";
 
 @Component({
@@ -11,6 +11,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
   @Input() searchCompleted: boolean = false;
 
   searchResults: SearchResult[] = [];
+  searchEngineType = SearchEngineType;
 
   constructor(private searchResultService: SearchResultService) {
   }
