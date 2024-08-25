@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/cor
 import { SearchResultService } from "../services/search-result.service";
 import { NgForm } from "@angular/forms";
 import { SearchEngineType, SearchResult } from "../models/search-result.model";
-import { ApiService } from "../services/api.service";
 import { ToastrService } from "ngx-toastr";
 
 
@@ -58,6 +57,9 @@ export class SearchComponent implements OnInit {
           },
           error => {
             this.toastr.error(error.detail);
+            //NOTE: there's an issue that ngx-toast error sometimes not work
+            //Use alert instead
+            window.alert(error.detail);
           }
         );
     }
