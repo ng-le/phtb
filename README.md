@@ -26,7 +26,9 @@ cd phtb\ui\phtb
 npm install
 npm start
 ```
-If it build and run succesfully, you can check by the link http://localhost:4200/
+If it build and run succesfully, you can check by the link http://localhost:4200/.
+
+The backend api url is defined in `environment.ts` file
 
 ## Unit Tests
 Run the unit tests for API
