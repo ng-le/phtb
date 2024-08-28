@@ -29,6 +29,8 @@ try
     builder.Services.AddSwaggerGen();
     builder.Services.AddHttpClient();
     builder.Services.AddCors();
+    builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+    builder.Services.AddProblemDetails();
 
     var app = builder.Build();
 
@@ -52,6 +54,8 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+
+    app.UseExceptionHandler();
 
     app.Run();
 }

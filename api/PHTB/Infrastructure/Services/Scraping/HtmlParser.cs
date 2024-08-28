@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Infrastructure.Services.Scraping
 {
+    // NOTE: We can provide an abstraction for each search engine type
     public class HtmlParser : IHtmlParser
     {
         public List<string> ParseUrls(string htmlContent, SearchEngineType searchEngineType)

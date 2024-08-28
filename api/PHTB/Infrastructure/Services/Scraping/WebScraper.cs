@@ -15,7 +15,7 @@ namespace Infrastructure.Services.Scraping
         }
         public async Task<string> GetPageContent(string url)
         {
-            var httpClient = _httpClientFactory.CreateClient();
+            var httpClient = _httpClientFactory.CreateClient();            
 
             try
             {
@@ -28,8 +28,6 @@ namespace Infrastructure.Services.Scraping
                 _logger.LogError(ex, $"Get page content from url exception: {ex.Message}");
                 throw new WebScraperException("Failed to get page content from the URL: " + ex.Message);
             }
-
-            //return string.Empty;
         }
     }
 }

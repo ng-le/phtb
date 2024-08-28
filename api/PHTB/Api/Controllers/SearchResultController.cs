@@ -1,12 +1,10 @@
-﻿using Api.Filters;
-using Application.SearchResults.Queries;
+﻿using Application.SearchResults.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [ApiController]
-    [ApiExceptionFilter]
     [Route("api/[controller]")]
     public class SearchResultController : ControllerBase
     {
