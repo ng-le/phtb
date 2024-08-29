@@ -1,12 +1,9 @@
 ﻿using Application.Common.Exceptions;
-using Application.Scraping.Interfaces;
-using Domain.Enums;
 using Infrastructure.Services.Scraping;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System.Net.Http;
 
 namespace Application.UnitTests.Scraping
 {
